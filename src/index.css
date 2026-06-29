@@ -1,0 +1,259 @@
+/* === BASE RESET & SYSTEM === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* === FONT === */
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+  color: #0f172a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.6;
+}
+
+/* === SKIP LINK (Accessibility) === */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 9999;
+  background: #FF4500;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 0 0 8px 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  outline: 3px solid #0f172a;
+}
+
+/* === FOCUS STYLES (Accessibility) === */
+*:focus-visible {
+  outline: 3px solid #FF4500;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid #FF4500;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(255, 69, 0, 0.15);
+}
+
+/* === SMOOTH SCROLL === */
+html {
+  scroll-behavior: smooth;
+}
+
+/* === REDUCED MOTION SUPPORT (Accessibility) === */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* === SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #FF4500;
+  border-radius: 10px;
+}
+
+/* === IMAGE DEFAULTS === */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* === BUTTON BASE (Accessibility) === */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+/* === LINK BASE === */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+
+/* === TVS BIKES APP COMPONENT STYLES === */
+
+/* Bike name shimmer animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+}
+@keyframes slide-up {
+  from { transform: translateY(40px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, #0f172a 0%, var(--accent, #FF4500) 40%, #0f172a 60%, var(--accent, #FF4500) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Section pill badge */
+.section-tag {
+  display: inline-block;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--accent, #FF4500);
+  padding: 6px 16px; border-radius: 100px;
+  background: rgba(15,23,42,0.03);
+  border: 1px solid var(--accent, #FF4500);
+  margin-bottom: 16px;
+}
+
+/* Spec pill grid item */
+.spec-pill {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 14px 20px; border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(15,23,42,0.08);
+  min-width: 100px;
+  box-shadow: 0 4px 12px rgba(15,23,42,0.03);
+}
+
+/* Glass morphism card */
+.glass-card {
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(15,23,42,0.08);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15,23,42,0.04);
+}
+.glass-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, transparent 60%);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Gradient CTA button */
+.liquid-btn {
+  position: relative;
+  cursor: pointer;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, var(--accent, #FF4500), #7C3AED);
+  color: #fff !important;
+  font-family: inherit;
+}
+.liquid-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(255,69,0,0.25);
+  filter: brightness(1.1);
+}
+.liquid-btn:focus-visible {
+  outline: 3px solid #0f172a;
+  outline-offset: 3px;
+}
+
+/* Service feature card */
+.service-card {
+  padding: 32px 28px; border-radius: 20px;
+  background: #fff;
+  border: 1px solid rgba(15,23,42,0.08);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  display: flex; flex-direction: column; gap: 16px;
+  box-shadow: 0 8px 24px rgba(15,23,42,0.03);
+}
+.service-card:hover {
+  border-color: var(--accent, #FF4500);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+}
+
+/* Form inputs */
+.input-glass {
+  background: #fff;
+  border: 1px solid rgba(15,23,42,0.12);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: #0f172a;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-family: inherit;
+}
+.input-glass:focus {
+  border-color: var(--accent, #FF4500);
+  box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.1);
+}
+
+/* Navigation links */
+.nav-link {
+  font-size: 14px; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; cursor: pointer;
+  padding: 8px 16px; border-radius: 100px;
+  transition: all 0.3s; color: #475569;
+  background: transparent; border: none;
+  font-family: inherit; display: inline-block; text-decoration: none;
+}
+.nav-link:hover, .nav-link.active {
+  color: #0f172a;
+  background: rgba(15,23,42,0.05);
+}
+.nav-link.active { color: var(--accent, #FF4500); }
+.nav-link:focus-visible {
+  outline: 3px solid var(--accent, #FF4500);
+  outline-offset: 3px;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 968px) {
+  .nav-links-container { display: none !important; }
+  .hero-grid { grid-template-columns: 1fr !important; text-align: center; }
+  .hero-bike-container { height: 280px !important; }
+  .specs-layout { grid-template-columns: 1fr !important; }
+  .contact-grid { grid-template-columns: 1fr !important; gap: 48px; }
+  .bikes-selector-grid { grid-template-columns: 1fr !important; }
+  .showcase-card { grid-template-columns: 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+}
